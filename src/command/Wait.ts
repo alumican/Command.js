@@ -10,7 +10,7 @@ namespace cmd {
 		//
 		// --------------------------------------------------
 
-		constructor(time:number = 1) {
+		constructor(time:number = 1000) {
 			super();
 			this.time = time;
 			this.timerId = -1;
@@ -27,7 +27,7 @@ namespace cmd {
 		// --------------------------------------------------
 
 		protected implExecuteFunction(command:Command):void {
-			this.timerId = window.setTimeout(this.completeHandler, this.time * 1000);
+			this.timerId = window.setTimeout(this.completeHandler, this.time);
 		}
 
 		protected implInterruptFunction(command:Command):void {

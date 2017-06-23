@@ -251,6 +251,9 @@ declare namespace cmd {
         private startTime;
         private timerId;
         private internalFrom;
+        getUpdateInterval(): number;
+        setUpdateInterval(milliseconds: number): void;
+        private static updateInterval;
     }
 }
 declare namespace cmd {

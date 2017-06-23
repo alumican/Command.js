@@ -12,7 +12,7 @@ namespace cmd {
 		//
 		// --------------------------------------------------
 
-		constructor(target:object, to:object, from:object = null, duration:number = 1, easing:EasingFunction = Easing.linear, onStart:TweenCallbackFunction = null, onUpdate:TweenCallbackFunction = null, onComplete:TweenCallbackFunction = null) {
+		constructor(target:object, to:object, from:object = null, duration:number = 1000, easing:EasingFunction = Easing.linear, onStart:TweenCallbackFunction = null, onUpdate:TweenCallbackFunction = null, onComplete:TweenCallbackFunction = null) {
 			super();
 			this.tweenTarget = target;
 			this.to = to;
@@ -51,7 +51,7 @@ namespace cmd {
 				}
 			}
 			if (this.duration > 0) {
-				this.timerId = window.setInterval(this.intervalHandler, 1000 / 60);
+				this.timerId = window.setInterval(this.intervalHandler, Tween.updateInterval);
 				this.startTime = new Date().getTime();
 				this.apply(0);
 				if (this.onStart) this.onStart(this.progressTime, this.progressValue);
@@ -100,7 +100,7 @@ namespace cmd {
 		}
 
 		private intervalHandler = ():void => {
-			const elapsedTime:number = (new Date().getTime() - this.startTime) / 1000;
+			const elapsedTime:number = new Date().getTime() - this.startTime;
 			if (elapsedTime < this.duration) {
 				this.apply(elapsedTime / this.duration);
 				if (this.onUpdate) this.onUpdate(this.progressTime, this.progressValue);
@@ -164,5 +164,9 @@ namespace cmd {
 		private startTime:number;
 		private timerId:number;
 		private internalFrom:Object;
+
+		public getUpdateInterval():number { return Tween.updateInterval; }
+		public setUpdateInterval(milliseconds:number):void { Tween.updateInterval = milliseconds; }
+		private static updateInterval:number = 1000 / 60;
 	}
 }
