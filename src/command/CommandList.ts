@@ -65,7 +65,7 @@ namespace cmd {
 			let command:Command|Function;
 			for (let i:number = 0; i < numCommands; ++i) {
 				command = commands[i];
-				if (typeof(command) == "function") command = new Func(command);
+				if (typeof(command) == "function") commands[i] = command = new Func(command);
 				command.setParent(this);
 			}
 		}
