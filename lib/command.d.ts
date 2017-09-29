@@ -122,14 +122,14 @@ declare namespace cmd {
         insertCommandArray(commands: (Command | Function)[]): void;
         protected insertCommandArrayAt(index: number, commands: (Command | Function)[]): void;
         getLength(): number;
+        getCommandByIndex(index: number): Command;
+        getCommands(): Command[];
         private preProcess(commands);
         protected implExecuteFunction(command: Command): void;
         protected implInterruptFunction(command: Command): void;
         protected implDestroyFunction(command: Command): void;
         protected abstract implNotifyBreak(): void;
         protected abstract implNotifyReturn(): void;
-        protected getCommandByIndex(index: number): Command;
-        protected getCommands(): Command[];
         private commands;
     }
 }

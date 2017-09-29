@@ -60,6 +60,9 @@ namespace cmd {
 			return this.commands.length;
 		}
 
+		public getCommandByIndex(index:number):Command { return this.commands[index]; }
+		public getCommands():Command[] { return this.commands; }
+
 		private preProcess(commands:(Command|Function)[]):void {
 			const numCommands:number = commands.length;
 			let command:Command|Function;
@@ -93,8 +96,6 @@ namespace cmd {
 		//
 		// --------------------------------------------------
 
-		protected getCommandByIndex(index:number):Command { return this.commands[index]; }
-		protected getCommands():Command[] { return this.commands; }
 		private commands:Command[];
 	}
 }
